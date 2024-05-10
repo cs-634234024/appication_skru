@@ -336,7 +336,7 @@ class _ScanPageState extends State<ScanPage> {
         const Padding(
           padding: EdgeInsets.only(top: 16.0),
           child: Text(
-            'Lorem ipsum',
+            'Scan Crack',
             style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -346,7 +346,7 @@ class _ScanPageState extends State<ScanPage> {
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 40.0),
           child: Text(
-            'Lorem ipsum dolor sit amet consectetur. Dui urna ',
+            'โมเดล มีความถูกต้อง ประมาณ 75% ในการแสกน',
             style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.bold,

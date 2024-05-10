@@ -21,7 +21,7 @@ class _AppState extends State<App> {
   List<NewsModal> news = [];
   List<String> titleAppbar = ['หน้าแรก', "แสกน", 'ประวัติ', 'ผู้ใช้งาน'];
   List<History> histories = [];
-  int _selectindex = 0;
+  int _selectindex = 1;
 
   void _getNews() {
     news = NewsModal.getNews();
