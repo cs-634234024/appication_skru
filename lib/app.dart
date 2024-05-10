@@ -19,7 +19,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   List<NewsModal> news = [];
-  List<String> titleAppbar = ['HomePage', "Scan", 'History', ''];
+  List<String> titleAppbar = ['หน้าแรก', "แสกน", 'ประวัติ', 'ผู้ใช้งาน'];
   List<History> histories = [];
   int _selectindex = 0;
 

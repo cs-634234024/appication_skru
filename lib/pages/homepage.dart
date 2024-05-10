@@ -173,12 +173,23 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 5,
-            ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Center(child: Text(news[index].name)),
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: Center(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      news[index].name,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
+                  ),
+                ),
+              ),
             )
           ],
         ),

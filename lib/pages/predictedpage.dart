@@ -16,12 +16,14 @@ class PredictedScreen extends StatefulWidget {
 class _PredictedScreenState extends State<PredictedScreen> {
   int tabMenuIndex = 0;
   List<String> menus = ['ลักษณะ', 'สาเหตุ', 'ผลกระทบ', 'แนวทางแก้ไข'];
+
   List<String> images = [
     'assets/images/main.png',
     'assets/images/main.png',
     'assets/images/main.png',
     'assets/images/main.png',
   ];
+
   List<PredictedModel> detail = [];
 
   void _getDetail() {
@@ -67,27 +69,56 @@ class _PredictedScreenState extends State<PredictedScreen> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16.0),
-                        child: Row(
-                          children: [
-                            CircleAvatar(
-                                backgroundColor: Colors.white,
-                                maxRadius: 24.0,
-                                backgroundImage:
-                                    AssetImage(detail[widget.index].logoImage)),
-                            const SizedBox(
-                              width: 8,
+                      Column(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(left: 24.0),
+                            child: Row(
+                              children: [
+                                CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    maxRadius: 24.0,
+                                    backgroundImage: AssetImage(
+                                        detail[widget.index].logoImage)),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                SizedBox(
+                                  width: 140,
+                                  child: Text(
+                                    detail[widget.index].title,
+                                    style: const TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white),
+                                  ),
+                                ),
+                              ],
                             ),
-                            Text(
-                              detail[widget.index].title,
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Container(
+                            height: 2,
+                            width: 200,
+                            decoration:
+                                const BoxDecoration(color: Colors.white),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          SizedBox(
+                            width: 180,
+                            child: Text(
+                              detail[widget.index].titleEng,
                               style: const TextStyle(
-                                  fontSize: 16,
+                                  fontSize: 13,
                                   fontWeight: FontWeight.bold,
                                   color: Colors.white),
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
                     ],
                   ),
