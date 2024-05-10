@@ -7,7 +7,6 @@ import 'package:skru/models/history.model.dart';
 import 'package:skru/providers/history_provider.dart';
 import 'package:skru/utils/displayClass.dart';
 import 'package:skru/utils/formatDateTime.dart';
-import 'package:skru/utils/notifyTost.dart';
 import 'package:skru/utils/snackbar.dart';
 
 class HistoryScreen extends StatefulWidget {

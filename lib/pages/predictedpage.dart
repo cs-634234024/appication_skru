@@ -15,8 +15,13 @@ class PredictedScreen extends StatefulWidget {
 
 class _PredictedScreenState extends State<PredictedScreen> {
   int tabMenuIndex = 0;
-  List<String> menus = ['ลักษณะ', 'สาเหตุ', 'ผลกระทบ', 'แนวทางแก้ไข'];
-
+  List<String> menus = ['ลักษณะ', 'สาเหตุ', 'ผลกระทบ', 'ทางแก้ไข'];
+  List<IconData> icons = [
+    FontAwesomeIcons.book,
+    FontAwesomeIcons.heartCrack,
+    FontAwesomeIcons.circleExclamation,
+    FontAwesomeIcons.heartPulse,
+  ];
   List<String> images = [
     'assets/images/main.png',
     'assets/images/main.png',
@@ -134,83 +139,231 @@ class _PredictedScreenState extends State<PredictedScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'เมนู',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
                   const SizedBox(
-                    height: 5,
+                    height: 16,
+                  ),
+                  const Text('ข่าวสารที่แนะนำ'),
+                  const SizedBox(
+                    height: 8,
                   ),
                   SizedBox(
-                    height: 50,
+                    height: 150,
+                    // color: Colors.amber,
                     child: ListView.separated(
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => handleIndexMenu(index),
-                            child: Container(
-                              width: 130,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  bottom: BorderSide(
-                                      color: tabMenuIndex == index
-                                          ? Colors.indigoAccent
-                                          : Colors.white,
-                                      width: 3),
+                      itemCount: 1,
+                      separatorBuilder: (context, index) => const SizedBox(
+                        height: 15,
+                      ),
+                      itemBuilder: (context, index) {
+                        return _buildNewsCard();
+                      },
+                    ),
+                  ),
+                  // const Text(
+                  //   'เมนู',
+                  //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  // ),
+                  // const SizedBox(
+                  //   height: 5,
+                  // ),
+                  // SizedBox(
+                  //   height: 50,
+                  //   child: ListView.separated(
+                  //       scrollDirection: Axis.horizontal,
+                  //       itemBuilder: (context, index) {
+                  //         return menusAction(index);
+                  //       },
+                  //       separatorBuilder: (context, index) {
+                  //         return const SizedBox(
+                  //           width: 8,
+                  //         );
+                  //       },
+                  //       itemCount: 4),
+                  // ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Image.asset(
+                            'assets/images/main.png',
+                            scale: 4.2,
+                          ),
+                          Expanded(
+                              child: Container(
+                            width: double.infinity,
+                            child: Column(
+                              children: [
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [menusAction(0), menusAction(1)],
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [menusAction(2), menusAction(3)],
+                                )
+                              ],
+                            ),
+                          ))
+                        ],
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.amber[300],
+                            borderRadius: BorderRadius.circular(4)),
+                        width: double.infinity,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16.0, vertical: 40),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  children: [
+                                    FaIcon(
+                                      icons[tabMenuIndex],
+                                      size: 20,
+                                      color: Colors.white,
+                                    ),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
+                                    Text(
+                                      menus[tabMenuIndex],
+                                      style: const TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ],
                                 ),
                               ),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  FaIcon(
-                                    FontAwesomeIcons.home,
-                                    size: 16,
-                                    color: tabMenuIndex == index
-                                        ? Colors.indigoAccent
-                                        : Colors.black26,
-                                  ),
-                                  const SizedBox(
-                                    width: 6,
-                                  ),
-                                  Text(
-                                    menus[index],
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      color: tabMenuIndex == index
-                                          ? Colors.indigoAccent
-                                          : Colors.black26,
-                                    ),
-                                  ),
-                                ],
+                              const SizedBox(
+                                height: 10,
                               ),
-                            ),
-                          );
-                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(
-                            width: 8,
-                          );
-                        },
-                        itemCount: 4),
+                              Text(detail[widget.index].detail[tabMenuIndex]),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                  const SizedBox(
-                    height: 22,
-                  ),
-                  Container(
-                    decoration: BoxDecoration(
-                        color: Colors.black12,
-                        borderRadius: BorderRadius.circular(4)),
-                    width: double.infinity,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child:
-                          Text('${detail[widget.index].detail[tabMenuIndex]}'),
-                    ),
-                  )
+                  // Positioned(
+                  //     top: 0,
+                  //     left: 0,
+                  //     child: Image.asset(
+                  //       'assets/images/main.png',
+                  //       scale: 1,
+                  //     ))
                 ],
               ),
             )
           ],
         ));
   }
+
+  GestureDetector menusAction(int index) {
+    return GestureDetector(
+      onTap: () => handleIndexMenu(index),
+      child: Container(
+        width: 115,
+        height: 50,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            border: Border.all(
+                color:
+                    tabMenuIndex == index ? Colors.indigoAccent : Colors.white,
+                width: 3)),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FaIcon(
+              icons[index],
+              size: 16,
+              color:
+                  tabMenuIndex == index ? Colors.indigoAccent : Colors.black26,
+            ),
+            const SizedBox(
+              width: 6,
+            ),
+            Text(
+              menus[index],
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: tabMenuIndex == index
+                    ? Colors.indigoAccent
+                    : Colors.black26,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+Container _buildNewsCard() {
+  return Container(
+    height: 130,
+    decoration: BoxDecoration(
+        color: const Color(0xFFD9D9D9), borderRadius: BorderRadius.circular(8)),
+    child: Row(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 130,
+            width: 120,
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(4)),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                'assets/images/skeleton.png',
+                opacity: const AlwaysStoppedAnimation(0.5),
+              ),
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
+            height: 130,
+            width: 200,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(4)),
+            child: const Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'ชื่อข่าวสาร',
+                      style:
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      '35 นาทีก่อน',
+                      style: TextStyle(fontSize: 12, color: Color(0xFF475467)),
+                    )
+                  ],
+                ),
+                SizedBox(
+                  height: 12,
+                ),
+                Text(
+                  'Lorem ipsum dolor sit amet consectetur. Dui urna facilisis posuere volutpat aliquam facilisis posuere ....',
+                  style: TextStyle(fontSize: 12, color: Color(0xFF475467)),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
