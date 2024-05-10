@@ -23,6 +23,17 @@ class HistoryProvider with ChangeNotifier {
   void removeHistory(String id) async {
     var db = HistoryDB(dbName: 'history.db');
     await db.deleteData(id);
+    histories = await db.loadAllData();
     notifyListeners();
+  }
+
+  Future<bool> checkIdHistory(String id) async {
+    var db = HistoryDB(dbName: 'history.db');
+    histories = await db.loadAllData();
+    var data = histories.where((element) => element.id == id);
+    if (data.isNotEmpty) {
+      return true;
+    }
+    return false;
   }
 }

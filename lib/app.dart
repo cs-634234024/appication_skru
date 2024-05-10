@@ -104,7 +104,7 @@ onChangeBodyContent(int index, List<History> history) {
   } else if (index == 1) {
     return const ScanPage();
   } else if (index == 2) {
-    return const HistoryScreen();
+    return HistoryScreen(history: history);
   } else if (index == 3) {
     return const ProfilePage();
   }

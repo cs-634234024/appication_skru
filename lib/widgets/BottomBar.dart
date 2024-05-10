@@ -11,10 +11,6 @@ class BottomBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius: const BorderRadius.only(
-        topRight: Radius.circular(24),
-        topLeft: Radius.circular(24),
-      ),
       child: BottomNavigationBar(
         backgroundColor: kbuttonWidgetColor,
         selectedIconTheme: IconThemeData(color: Colors.white),

@@ -7,12 +7,11 @@ import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
-import 'package:skru/database/history.db.dart';
 import 'package:skru/models/history.model.dart';
 import 'package:skru/pages/predictedpage.dart';
 import 'package:skru/providers/history_provider.dart';
 import 'package:skru/utils/displayClass.dart';
-import 'package:skru/utils/notifyTost.dart';
+import 'package:skru/utils/snackbar.dart';
 import 'package:skru/widgets/CustomButton.dart';
 import 'package:skru/widgets/PredictResult.dart';
 import 'package:tflite/tflite.dart';
@@ -30,6 +29,7 @@ class _ScanPageState extends State<ScanPage> {
   late File _image;
   int indexButton = 0;
   List? _output;
+  late String _id;
   final picker = ImagePicker();
 
   @override
@@ -58,6 +58,7 @@ class _ScanPageState extends State<ScanPage> {
     setState(() {
       _output = output!;
       _loading = false;
+      _id = const Uuid().v4();
     });
   }
 
@@ -90,22 +91,45 @@ class _ScanPageState extends State<ScanPage> {
     classifyImage(_image);
   }
 
-  void handleSaveHistory() {
+  void handleSaveHistory() async {
     setState(() {
       indexButton = 1;
     });
-
-    History data = History(
-        id: const Uuid().v4(),
-        image: 'assets/images/skeleton.png',
-        title: _output?[0]['label'],
-        accuracy: _output?[0]['confidence'],
-        createdAt: DateTime.now().toIso8601String());
-    // provider
     var provider = Provider.of<HistoryProvider>(context, listen: false);
-    provider.addHistory(data);
 
-    notifyTost('บันทึกสำเร็จ');
+    if (await provider.checkIdHistory(_id) == true) {
+      alertSnackBar(
+          context,
+          'ระบบบันทึกข้อมูลนี้แล้ว',
+          Colors.red,
+          1,
+          const FaIcon(
+            FontAwesomeIcons.x,
+            size: 16,
+            color: Colors.white,
+          ));
+    } else {
+      History data = History(
+          id: _id,
+          image: 'assets/images/skeleton.png',
+          title: _output?[0]['label'],
+          accuracy: _output?[0]['confidence'],
+          createdAt: DateTime.now().toIso8601String());
+      // provider
+
+      provider.addHistory(data);
+
+      alertSnackBar(
+          context,
+          'บันทึกข้อมูลสำเร็จ',
+          Colors.green,
+          1,
+          const FaIcon(
+            FontAwesomeIcons.check,
+            size: 16,
+            color: Colors.white,
+          ));
+    }
   }
 
   void handleMoreDetail() {
