@@ -51,12 +51,15 @@ class HistoryDB {
           accuracy: double.parse(record['accuracy'].toString()),
           createdAt: record['createdAt'].toString()));
     }
+    db.close();
     return historyList;
   }
 
-  void deleteData() async {
+  Future<void> deleteData(String id) async {
     var db = await openDatabase();
     var store = intMapStoreFactory.store("history");
-    await store.delete(db);
+    var finder = Finder(filter: Filter.equals('id', id));
+    var val = await store.delete(db, finder: finder);
+    db.close();
   }
 }

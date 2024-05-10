@@ -18,7 +18,11 @@ class HistoryProvider with ChangeNotifier {
     var db = HistoryDB(dbName: 'history.db');
     await db.insertData(history);
     notifyListeners();
+  }
 
-    // await db.loadAllData();
+  void removeHistory(String id) async {
+    var db = HistoryDB(dbName: 'history.db');
+    await db.deleteData(id);
+    notifyListeners();
   }
 }

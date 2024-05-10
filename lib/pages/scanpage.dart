@@ -80,8 +80,6 @@ class _ScanPageState extends State<ScanPage> {
   }
 
   pickGalleryImage() async {
-    // var db = HistoryDB(dbName: 'history.db');
-    // db.deleteData();
     var image = await picker.pickImage(source: ImageSource.gallery);
     if (image == null) return null;
 
@@ -99,7 +97,7 @@ class _ScanPageState extends State<ScanPage> {
 
     History data = History(
         id: const Uuid().v4(),
-        image: 'assets/images/image5.png',
+        image: 'assets/images/skeleton.png',
         title: _output?[0]['label'],
         accuracy: _output?[0]['confidence'],
         createdAt: DateTime.now().toIso8601String());

@@ -102,7 +102,10 @@ class _HomePageState extends State<HomePage> {
                   color: Colors.white, borderRadius: BorderRadius.circular(4)),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Image.asset(news[index].image),
+                child: Image.asset(
+                  news[index].image,
+                  opacity: const AlwaysStoppedAnimation(0.5),
+                ),
               ),
             ),
           ),
@@ -169,7 +172,10 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(4)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(news[index].image),
+                  child: Image.asset(
+                    news[index].image,
+                    opacity: const AlwaysStoppedAnimation(0.5),
+                  ),
                 ),
               ),
             ),
