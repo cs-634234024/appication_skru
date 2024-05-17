@@ -24,7 +24,7 @@ class BottomBar extends StatelessWidget {
           ),
           BottomNavigationBarItem(
             icon: const FaIcon(FontAwesomeIcons.expand),
-            label: 'แสกน',
+            label: 'สแกน',
             backgroundColor: Colors.amber.shade200,
           ),
           BottomNavigationBarItem(

@@ -275,7 +275,7 @@ class _ScanPageState extends State<ScanPage> {
                     width: 16,
                   ),
                   Text(
-                    'ผลการแสกน',
+                    'ผลการสแกน',
                     style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
