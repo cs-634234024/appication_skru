@@ -220,7 +220,7 @@ class _ScanPageState extends State<ScanPage> {
         _output != null
             ? PredictResult(
                 title: displayClass(_output?[0]['label']),
-                color: Colors.black12,
+                color: Colors.amber.shade200,
                 index: 2,
                 value: _output?[0]['confidence'] * 100,
                 onClick: handleMoreDetail,
@@ -341,16 +341,6 @@ class _ScanPageState extends State<ScanPage> {
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
                 color: Colors.black54),
-          ),
-        ),
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 40.0),
-          child: Text(
-            'โมเดล มีความถูกต้อง ประมาณ 75% ในการแสกน',
-            style: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.bold,
-                color: Colors.black38),
           ),
         ),
         const SizedBox(

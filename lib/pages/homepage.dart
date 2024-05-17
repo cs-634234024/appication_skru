@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
+import 'package:flutter/widgets.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skru/models/news.model.dart';
 import 'package:skru/pages/predictedpage.dart';
 
@@ -11,6 +14,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<NewsModal> news = [];
+  int indexImage = 0;
+  List<String> listImage = [
+    'assets/images/news/news1.jpg',
+    'assets/images/news/news2.jpg',
+    'assets/images/news/news3.jpg'
+  ];
 
   void _getNews() {
     news = NewsModal.getNews();
@@ -20,6 +29,26 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _getNews();
+  }
+
+  void inCreaseIndex() {
+    setState(() {
+      if (indexImage < listImage.length - 1) {
+        indexImage += 1;
+      } else {
+        indexImage = 0;
+      }
+    });
+  }
+
+  void deCreaseIndex() {
+    setState(() {
+      if (indexImage <= 0) {
+        indexImage = listImage.length - 1;
+      } else {
+        indexImage -= 1;
+      }
+    });
   }
 
   @override
@@ -47,17 +76,78 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(
             height: 10,
           ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Container(
-              height: 200,
-              decoration: BoxDecoration(
-                  color: const Color(0xFFD9D9D9),
-                  borderRadius: BorderRadius.circular(12)),
-              child: const Center(
-                child: Text('ข่าวสารที่เเนะนำ'),
+          Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Container(
+                  height: 200,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage(listImage[indexImage]),
+                          fit: BoxFit.cover),
+                      color: const Color(0xFFD9D9D9),
+                      borderRadius: BorderRadius.circular(12)),
+                ),
               ),
-            ),
+              Positioned(
+                  left: 30,
+                  bottom: 95,
+                  child: GestureDetector(
+                    onTap: deCreaseIndex,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white54,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.chevronLeft,
+                          color: Colors.black38,
+                        ),
+                      ),
+                    ),
+                  )),
+              Positioned(
+                  right: 30,
+                  bottom: 95,
+                  child: GestureDetector(
+                    onTap: inCreaseIndex,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white54,
+                          borderRadius: BorderRadius.circular(6)),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: FaIcon(
+                          FontAwesomeIcons.chevronRight,
+                          color: Colors.black38,
+                        ),
+                      ),
+                    ),
+                  )),
+              Positioned(
+                  bottom: 20,
+                  child: SizedBox(
+                      height: 20,
+                      width: 395,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            listImage.length,
+                            (index) => Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8),
+                                child: CircleAvatar(
+                                  backgroundColor: indexImage == index
+                                      ? Colors.black54
+                                      : Colors.black26,
+                                  radius: 9,
+                                )),
+                          ))))
+            ],
           ),
           Padding(
             padding: const EdgeInsets.all(16.0),
@@ -100,12 +190,10 @@ class _HomePageState extends State<HomePage> {
               width: 120,
               decoration: BoxDecoration(
                   color: Colors.white, borderRadius: BorderRadius.circular(4)),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Image.asset(
-                  news[index].image,
-                  opacity: const AlwaysStoppedAnimation(0.5),
-                ),
+              child: Image.asset(
+                listImage[index],
+                fit: BoxFit.cover,
+                opacity: const AlwaysStoppedAnimation(1),
               ),
             ),
           ),

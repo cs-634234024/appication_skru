@@ -34,17 +34,21 @@ class PredictResult extends StatelessWidget {
               decoration: BoxDecoration(
                   color: color, borderRadius: BorderRadius.circular(8)),
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 45),
+                padding: const EdgeInsets.symmetric(vertical: 24),
                 child: Column(
                   children: [
                     Column(
                       children: [
-                        Text(title,
-                            style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                fontFamily: 'Taitham3')),
+                        SizedBox(
+                          width: 300,
+                          child: Text(title,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontSize: 24,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
+                                  fontFamily: 'Taitham3')),
+                        ),
                         Text(
                           '${value.toStringAsFixed(2)} % ',
                           style: const TextStyle(

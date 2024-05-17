@@ -47,7 +47,7 @@ class NewsModal {
       image: 'assets/images/skeleton.png',
     ));
     news.add(NewsModal(
-      name: 'เมนู 6',
+      name: 'รอยร้าวแตกลายงา',
       detail: 'detail6',
       fullDetail: 'fullDetail6',
       image: 'assets/images/skeleton.png',

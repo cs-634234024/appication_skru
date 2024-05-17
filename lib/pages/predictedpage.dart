@@ -101,28 +101,6 @@ class _PredictedScreenState extends State<PredictedScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          Container(
-                            height: 2,
-                            width: 200,
-                            decoration:
-                                const BoxDecoration(color: Colors.white),
-                          ),
-                          const SizedBox(
-                            height: 5,
-                          ),
-                          SizedBox(
-                            width: 180,
-                            child: Text(
-                              detail[widget.index].titleEng,
-                              style: const TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white),
-                            ),
-                          ),
                         ],
                       ),
                     ],
@@ -159,27 +137,7 @@ class _PredictedScreenState extends State<PredictedScreen> {
                       },
                     ),
                   ),
-                  // const Text(
-                  //   'เมนู',
-                  //   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  // ),
-                  // const SizedBox(
-                  //   height: 5,
-                  // ),
-                  // SizedBox(
-                  //   height: 50,
-                  //   child: ListView.separated(
-                  //       scrollDirection: Axis.horizontal,
-                  //       itemBuilder: (context, index) {
-                  //         return menusAction(index);
-                  //       },
-                  //       separatorBuilder: (context, index) {
-                  //         return const SizedBox(
-                  //           width: 8,
-                  //         );
-                  //       },
-                  //       itemCount: 4),
-                  // ),
+
                   const SizedBox(
                     height: 8,
                   ),

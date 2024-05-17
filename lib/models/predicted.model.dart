@@ -67,7 +67,7 @@ class PredictedModel {
       ],
     ));
     detail.add(PredictedModel(
-      title: 'เมนู 6',
+      title: 'รอยร้าวแตกลายงา',
       titleEng: 'Hairline Cracks',
       logoImage: 'assets/images/main.png',
       detail: [

@@ -19,7 +19,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   List<NewsModal> news = [];
-  List<String> titleAppbar = ['หน้าแรก', "แสกน", 'ประวัติ', 'ผู้ใช้งาน'];
+  List<String> titleAppbar = ['หน้าแรก', "สแกน", 'ประวัติ', 'ผู้ใช้งาน'];
   List<History> histories = [];
   int _selectindex = 1;
 
@@ -67,33 +67,13 @@ class _AppState extends State<App> {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // _buildIcon(
-          //   "assets/svg/arrow-left.svg",
-          // ),
           Text(
             onCheckMenubar(_selectindex),
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w400),
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
           ),
-          // _buildIcon(
-          //   "assets/svg/hamburger.svg",
-          // ),
         ],
       ),
       elevation: 0,
-    );
-  }
-
-// icon appbar
-  Container _buildIcon(String path) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8), color: Colors.amber.shade50),
-      child: Padding(
-        padding: const EdgeInsets.all(3.0),
-        child: Center(
-          child: SvgPicture.asset(path),
-        ),
-      ),
     );
   }
 }

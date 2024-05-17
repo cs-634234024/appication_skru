@@ -12,9 +12,11 @@ String displayClass(String data) {
   } else if (data == 'Cracks with a faint rust tint') {
     classData = 'รอยร้าวที่มีเหล็กสนิม';
   } else if (data == 'Hairline Cracks') {
-    classData = 'test';
+    classData = 'รอยร้าวแตกลายงา';
   } else if (data == 'cracks in the road') {
     classData = 'รอยแตกบนถนน';
+  } else if (data == 'Negative') {
+    classData = 'ปกติ';
   } else {
     classData = 'รอยร้าวกลางคาน';
   }
