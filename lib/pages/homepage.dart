@@ -3,6 +3,7 @@ import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skru/models/news.model.dart';
+import 'package:skru/pages/menuspage.dart';
 import 'package:skru/pages/predictedpage.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,7 +14,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<NewsModal> news = [];
+  List<MenusModel> menus = [];
   int indexImage = 0;
   List<String> listImage = [
     'assets/images/news/news1.jpg',
@@ -22,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   ];
 
   void _getNews() {
-    news = NewsModal.getNews();
+    menus = MenusModel.getNews();
   }
 
   @override
@@ -53,17 +54,23 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    void handleClickMoreMenu() {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => MenusPage()));
+    }
+
     return ListView(children: [
       Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(left: 16.0, right: 16.0),
-            child: _buildTitle('สิ่งที่น่าสนใจ', 'เพิ่มเติม'),
+            child:
+                _buildTitle('สิ่งที่น่าสนใจ', 'เพิ่มเติม', handleClickMoreMenu),
           ),
           SizedBox(
             height: 165,
             child: ListView.separated(
-                itemCount: news.length,
+                itemCount: menus.length,
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.only(left: 20, right: 20),
                 separatorBuilder: (context, index) => const SizedBox(
@@ -153,7 +160,7 @@ class _HomePageState extends State<HomePage> {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               children: [
-                _buildTitle('ข่าวสารแนะนำ', 'เพิ่มเติม'),
+                _buildTitle('ข่าวสารแนะนำ', 'เพิ่มเติม', handleClickMoreMenu),
                 SizedBox(
                   height: 300,
                   // color: Colors.amber,
@@ -258,12 +265,10 @@ class _HomePageState extends State<HomePage> {
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(4)),
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Image.asset(
-                    news[index].image,
-                    opacity: const AlwaysStoppedAnimation(0.5),
-                  ),
+                child: Image.asset(
+                  menus[index].image,
+                  fit: BoxFit.cover,
+                  opacity: const AlwaysStoppedAnimation(0.5),
                 ),
               ),
             ),
@@ -274,7 +279,7 @@ class _HomePageState extends State<HomePage> {
                   width: double.infinity,
                   child: Center(
                     child: Text(
-                      news[index].name,
+                      menus[index].name,
                       textAlign: TextAlign.center,
                       style: const TextStyle(
                           fontSize: 14,
@@ -292,7 +297,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Row _buildTitle(String title, String subTitle) {
+Row _buildTitle(String title, String subTitle, dynamic onTap) {
   return Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
@@ -306,13 +311,32 @@ Row _buildTitle(String title, String subTitle) {
           ),
         ),
       ),
-      Text(
-        subTitle,
-        style: const TextStyle(
-          fontSize: 16,
-          color: Color(0xFF5BBCFF),
-        ),
-      ),
+      tapText(subTitle, onTap)
+
+      //  Navigator.push(
+      //       context,
+      //       MaterialPageRoute(
+      //           builder: (context) => PredictedScreen(index: index)))
+      // Text(
+      //   subTitle,
+      //   style: const TextStyle(
+      //     fontSize: 16,
+      //     color: Color(0xFF5BBCFF),
+      //   ),
+      // ),
     ],
+  );
+}
+
+Widget tapText(String text, dynamic onClick) {
+  return GestureDetector(
+    onTap: onClick,
+    child: Text(
+      text,
+      style: const TextStyle(
+        fontSize: 16,
+        color: Color(0xFF5BBCFF),
+      ),
+    ),
   );
 }

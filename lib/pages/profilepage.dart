@@ -11,10 +11,10 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<UserModel> user = [];
+  List<UserInitail> user = [];
 
   void _getUser() {
-    user = UserModel.getUser();
+    user = UserInitail.getUser();
   }
 
   @override

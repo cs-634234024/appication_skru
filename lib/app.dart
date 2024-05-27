@@ -18,13 +18,13 @@ class App extends StatefulWidget {
 }
 
 class _AppState extends State<App> {
-  List<NewsModal> news = [];
+  List<MenusModel> news = [];
   List<String> titleAppbar = ['หน้าแรก', "สแกน", 'ประวัติ', 'ผู้ใช้งาน'];
   List<History> histories = [];
   int _selectindex = 1;
 
   void _getNews() {
-    news = NewsModal.getNews();
+    news = MenusModel.getNews();
   }
 
   void _onItemTapped(int index) {
@@ -86,6 +86,6 @@ onChangeBodyContent(int index, List<History> history) {
   } else if (index == 2) {
     return HistoryScreen(history: history);
   } else if (index == 3) {
-    return const ProfilePage();
+    return ProfilePage();
   }
 }

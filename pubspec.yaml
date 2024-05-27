@@ -70,6 +70,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/news/
+    - assets/images/cracks/
     - assets/svg/
     - assets/label.txt
     - assets/model.tflite
