@@ -120,27 +120,91 @@ class _PredictedScreenState extends State<PredictedScreen> {
                   const SizedBox(
                     height: 16,
                   ),
-                  const Text('ข่าวสารที่แนะนำ'),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  SizedBox(
-                    height: 150,
-                    // color: Colors.amber,
-                    child: ListView.separated(
-                      itemCount: 1,
-                      separatorBuilder: (context, index) => const SizedBox(
-                        height: 15,
-                      ),
-                      itemBuilder: (context, index) {
-                        return _buildNewsCard();
-                      },
+                  const Padding(
+                    padding: EdgeInsets.only(left: 8.0),
+                    child: Text(
+                      'รูปตัวอย่าง',
+                      style: TextStyle(fontSize: 16),
                     ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Stack(
+                    children: [
+                      Container(
+                        height: 200,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage(detail[widget.index].image),
+                                fit: BoxFit.cover),
+                            color: const Color(0xFFD9D9D9),
+                            borderRadius: BorderRadius.circular(12)),
+                      ),
+                      Positioned(
+                          left: 20,
+                          bottom: 75,
+                          child: GestureDetector(
+                            onTap: () => {},
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white54,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 4.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.chevronLeft,
+                                  color: Colors.black38,
+                                ),
+                              ),
+                            ),
+                          )),
+                      Positioned(
+                          right: 20,
+                          bottom: 75,
+                          child: GestureDetector(
+                            onTap: () => {},
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: Colors.white54,
+                                  borderRadius: BorderRadius.circular(6)),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 4.0),
+                                child: FaIcon(
+                                  FontAwesomeIcons.chevronRight,
+                                  color: Colors.black38,
+                                ),
+                              ),
+                            ),
+                          )),
+                      Positioned(
+                          bottom: 20,
+                          right: -22,
+                          child: SizedBox(
+                              height: 20,
+                              width: 395,
+                              child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: List.generate(
+                                    3,
+                                    (index) => Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8),
+                                        child: CircleAvatar(
+                                          backgroundColor: Colors.black54,
+                                          // : Colors.black26,
+                                          radius: 9,
+                                        )),
+                                  ))))
+                    ],
                   ),
 
                   const SizedBox(
-                    height: 8,
+                    height: 35,
                   ),
+
                   Column(
                     children: [
                       Row(

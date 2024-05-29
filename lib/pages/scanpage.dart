@@ -336,7 +336,7 @@ class _ScanPageState extends State<ScanPage> {
         const Padding(
           padding: EdgeInsets.only(top: 16.0),
           child: Text(
-            'Scan Crack',
+            'ConcreatScan Pro',
             style: TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.bold,
@@ -347,7 +347,7 @@ class _ScanPageState extends State<ScanPage> {
           height: 40,
         ),
         CustomButton(
-          title: 'Camera',
+          title: 'กล้อง',
           icon: const FaIcon(
             FontAwesomeIcons.camera,
             color: Colors.white,
@@ -358,7 +358,7 @@ class _ScanPageState extends State<ScanPage> {
           height: 10,
         ),
         CustomButton(
-          title: 'Album',
+          title: 'แกลอรี่',
           icon: const FaIcon(
             FontAwesomeIcons.image,
             color: Colors.white,
