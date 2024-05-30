@@ -3,7 +3,7 @@ class PredictedModel {
   final String titleEng;
   final String logoImage;
   final List<String> detail;
-  final String image;
+  final List<String> image;
   PredictedModel(
       {required this.title,
       required this.logoImage,
@@ -23,7 +23,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/dialog_cracks.jpg',
+      image: [
+        'assets/images/cracks/dialog_cracks.jpg',
+        'assets/images/cracks/dialog_cracks.jpg',
+        'assets/images/cracks/dialog_cracks.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยร้าวจากวัสดุเสื่อมสภาพ',
@@ -35,7 +39,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/characteriestic_of_cracks.jpg',
+      image: [
+        'assets/images/cracks/characteriestic_of_cracks.jpg',
+        'assets/images/cracks/characteriestic_of_cracks.jpg',
+        'assets/images/cracks/characteriestic_of_cracks.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยร้าวบริเวณเสา',
@@ -47,7 +55,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/crack_around_the_pole.jpg',
+      image: [
+        'assets/images/cracks/crack_around_the_pole.jpg',
+        'assets/images/cracks/crack_around_the_pole.jpg',
+        'assets/images/cracks/crack_around_the_pole.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยร้าวบนหลังคา',
@@ -59,7 +71,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/crack_on_the_roof.jpg',
+      image: [
+        'assets/images/cracks/crack_on_the_roof.jpg',
+        'assets/images/cracks/crack_on_the_roof.jpg',
+        'assets/images/cracks/crack_on_the_roof.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยร้าวที่มีเหล็กสนิม',
@@ -71,7 +87,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/tint.jpg',
+      image: [
+        'assets/images/cracks/tint.jpg',
+        'assets/images/cracks/tint.jpg',
+        'assets/images/cracks/tint.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยร้าวแตกลายงา',
@@ -83,7 +103,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/hairline_crack.jpg',
+      image: [
+        'assets/images/cracks/hairline_crack.jpg',
+        'assets/images/cracks/hairline_crack.jpg',
+        'assets/images/cracks/hairline_crack.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยแตกบนถนน',
@@ -95,7 +119,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/crack_in_the_road.jpg',
+      image: [
+        'assets/images/cracks/crack_in_the_road.jpg',
+        'assets/images/cracks/crack_in_the_road.jpg',
+        'assets/images/cracks/crack_in_the_road.jpg'
+      ],
     ));
     detail.add(PredictedModel(
       title: 'รอยร้าวกลางคาน',
@@ -107,7 +135,11 @@ class PredictedModel {
         'อาจส่งผลต่อความแข็งแรงของโครงสร้าง เสาอาจหักพังได้อาจทำให้เกิดน้ำรั่วซึม อาจส่งผลต่อความสวยงามของอาคาร',
         'อาจจำเป็นต้องเสริมเหล็กเสา ซ่อมแซมรอยร้าว เปลี่ยนเสาใหม่ หรือปรับปรุงฐานราก'
       ],
-      image: 'assets/images/cracks/vertical_crack.jpg',
+      image: [
+        'assets/images/cracks/vertical_crack.jpg',
+        'assets/images/cracks/vertical_crack.jpg',
+        'assets/images/cracks/vertical_crack.jpg'
+      ],
     ));
 
     return detail;

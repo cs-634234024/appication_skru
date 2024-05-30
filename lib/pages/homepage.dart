@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import "package:flutter/material.dart";
 import 'package:flutter/widgets.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:skru/models/news.model.dart';
 import 'package:skru/pages/menuspage.dart';
 import 'package:skru/pages/predictedpage.dart';
@@ -55,7 +54,7 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     width: 10,
                   ),
-                  Container(
+                  SizedBox(
                     width: MediaQuery.of(context).size.width - 115,
                     height: 70,
                     // color: Colors.amber,
@@ -96,11 +95,11 @@ class _HomePageState extends State<HomePage> {
                     borderRadius: BorderRadius.circular(12)),
                 child: Row(
                   children: [
-                    Container(
+                    SizedBox(
                       width: MediaQuery.of(context).size.width - 200,
                       height: 120,
                       // color: Colors.white,
-                      child: Column(
+                      child: const Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(

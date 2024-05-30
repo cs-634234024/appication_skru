@@ -29,6 +29,32 @@ class _PredictedScreenState extends State<PredictedScreen> {
     'assets/images/main.png',
   ];
 
+  int indexImages = 0;
+
+  void inCrease() {
+    if (indexImages < detail[widget.index].image.length - 1) {
+      setState(() {
+        indexImages += 1;
+      });
+    } else {
+      setState(() {
+        indexImages = 0;
+      });
+    }
+  }
+
+  void deCrease() {
+    if (indexImages < 1) {
+      setState(() {
+        indexImages = detail[widget.index].image.length - 1;
+      });
+    } else {
+      setState(() {
+        indexImages -= 1;
+      });
+    }
+  }
+
   List<PredictedModel> detail = [];
 
   void _getDetail() {
@@ -136,7 +162,8 @@ class _PredictedScreenState extends State<PredictedScreen> {
                         height: 200,
                         decoration: BoxDecoration(
                             image: DecorationImage(
-                                image: AssetImage(detail[widget.index].image),
+                                image:
+                                    AssetImage(detail[widget.index].image[1]),
                                 fit: BoxFit.cover),
                             color: const Color(0xFFD9D9D9),
                             borderRadius: BorderRadius.circular(12)),
@@ -145,7 +172,7 @@ class _PredictedScreenState extends State<PredictedScreen> {
                           left: 20,
                           bottom: 75,
                           child: GestureDetector(
-                            onTap: () => {},
+                            onTap: deCrease,
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.white54,
@@ -164,7 +191,7 @@ class _PredictedScreenState extends State<PredictedScreen> {
                           right: 20,
                           bottom: 75,
                           child: GestureDetector(
-                            onTap: () => {},
+                            onTap: inCrease,
                             child: Container(
                               decoration: BoxDecoration(
                                   color: Colors.white54,
@@ -188,13 +215,14 @@ class _PredictedScreenState extends State<PredictedScreen> {
                               child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: List.generate(
-                                    3,
+                                    detail[widget.index].image.length,
                                     (index) => Padding(
                                         padding: const EdgeInsets.symmetric(
                                             horizontal: 8),
                                         child: CircleAvatar(
-                                          backgroundColor: Colors.black54,
-                                          // : Colors.black26,
+                                          backgroundColor: indexImages == index
+                                              ? Colors.black54
+                                              : Colors.black26,
                                           radius: 9,
                                         )),
                                   ))))
