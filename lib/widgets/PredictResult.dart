@@ -71,7 +71,7 @@ class PredictResult extends StatelessWidget {
                         child: const Padding(
                           padding: EdgeInsets.only(
                               left: 10, right: 10, top: 5, bottom: 5),
-                          child: Text('คลิ๊กเพื่อดูรายละเอียด',
+                          child: Text('ดูรายละเอียด',
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),

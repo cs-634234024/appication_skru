@@ -28,7 +28,7 @@ class BottomBar extends StatelessWidget {
             backgroundColor: Colors.amber.shade200,
           ),
           BottomNavigationBarItem(
-            icon: const FaIcon(FontAwesomeIcons.clockRotateLeft),
+            icon: const FaIcon(FontAwesomeIcons.file),
             label: 'ประวัติ',
             backgroundColor: Colors.amber.shade200,
           ),

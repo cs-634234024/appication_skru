@@ -17,13 +17,15 @@ class MenusModel {
     news.add(MenusModel(
       name: 'รอยร้าวแนวทแยงพาดเฉียง',
       detail: 'detail',
-      fullDetail: 'fullDetail',
+      fullDetail:
+          'ลักษณะ: รอยร้าวอาจปรากฏบนเสาคอนกรีตเสริมเหล็ก อาจมีความกว้างและความลึกแตกต่างกันไป รูปร่างอาจเป็นเส้นตรง เฉียง หรือแตกแขนง',
       image: 'assets/images/cracks/dialog_cracks.jpg',
     ));
     news.add(MenusModel(
       name: 'รอยร้าวจากวัสดุเสื่อมสภาพ',
       detail: 'detail2',
-      fullDetail: 'fullDetail2',
+      fullDetail:
+          'ลักษณะ: รอยร้าวอาจปรากฏบนเสาคอนกรีตเสริมเหล็ก อาจมีความกว้างและความลึกแตกต่างกันไป รูปร่างอาจเป็นเส้นตรง เฉียง หรือแตกแขนง',
       image: 'assets/images/cracks/characteriestic_of_cracks.jpg',
     ));
     news.add(MenusModel(

@@ -169,10 +169,16 @@ class _ScanPageState extends State<ScanPage> {
             _loading == true
                 ? Padding(
                     padding: const EdgeInsets.only(top: 40.0),
-                    child: Image.asset(
-                      'assets/images/main.png',
-                      scale: 1.25,
-                      opacity: const AlwaysStoppedAnimation(0.8),
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 75,
+                      height: 350,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(30),
+                        child: Image.asset(
+                          'assets/images/main_scan.jpg',
+                          fit: BoxFit.fill,
+                        ),
+                      ),
                     ),
                   )
                 : Padding(
