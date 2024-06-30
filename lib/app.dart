@@ -19,7 +19,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   List<MenusModel> news = [];
-  List<String> titleAppbar = ['หน้าแรก', "สแกน", 'ประวัติ', 'ผู้ใช้งาน'];
+  List<String> titleAppbar = ['', "", 'ประวัติ', 'ผู้ใช้งาน'];
   List<History> histories = [];
   int _selectindex = 1;
 
@@ -48,7 +48,7 @@ class _AppState extends State<App> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: _buildAppbar(),
+      // appBar: _buildAppbar(),
       body: Consumer(
         builder:
             (BuildContext context, HistoryProvider provider, Widget? child) {
@@ -63,7 +63,7 @@ class _AppState extends State<App> {
   // Appbar
   AppBar _buildAppbar() {
     return AppBar(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

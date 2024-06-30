@@ -93,7 +93,8 @@ class _MenusPageState extends State<MenusPage> {
                 ),
               ),
               Container(
-                height: MediaQuery.of(context).size.height - 80,
+                // height: MediaQuery.of(context).size.height - 300,
+                height: 1000,
                 decoration: BoxDecoration(color: Colors.amber.shade200),
                 child: Padding(
                   padding: const EdgeInsets.only(top: 20.0),

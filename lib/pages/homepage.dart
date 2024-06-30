@@ -33,57 +33,58 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    MediaQueryData querySize = MediaQuery.of(context);
+
     void handleClickMoreMenu() {
       Navigator.push(
           context, MaterialPageRoute(builder: (context) => MenusPage()));
     }
 
-    return ListView(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(
-                    radius: 35,
-                    backgroundColor: Colors.amber.shade200,
-                    backgroundImage: AssetImage('assets/images/main.png'),
-                  ),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 115,
-                    height: 70,
-                    // color: Colors.amber,
-                    child: const Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          'ConcreatScan Pro',
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          'ผู้ช่วยสำหรับการจำแนกการแตกร้าวของคอนกรีต',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.normal),
-                        )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              Container(
-                width: MediaQuery.of(context).size.width,
-                height: 200,
-                decoration: BoxDecoration(
+    return SafeArea(
+      child: ListView(
+        children: [
+          const SizedBox(
+            height: 30,
+          ),
+          SizedBox(
+            width: screenWidth,
+            child: Column(
+              children: [
+                _buildTop(),
+                const SizedBox(
+                  height: 15,
+                ),
+                _buildCenter(screenWidth),
+                const SizedBox(
+                  height: 15,
+                ),
+                _buildBottom(handleClickMoreMenu, querySize)
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  SizedBox _buildCenter(double screenWidth) {
+    return SizedBox(
+      width: screenWidth,
+      height: 200,
+      // color: Colors.amber,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: Row(
+          children: [
+            Expanded(
+                flex: 5,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.amber.shade200,
+                    borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(12),
+                        bottomLeft: Radius.circular(42)),
                     boxShadow: [
                       BoxShadow(
                         offset: const Offset(0, 1),
@@ -91,77 +92,84 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black.withOpacity(0.3),
                       ),
                     ],
-                    color: Colors.amber.shade300,
-                    borderRadius: BorderRadius.circular(12)),
-                child: Row(
-                  children: [
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 200,
-                      height: 120,
-                      // color: Colors.white,
-                      child: const Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'ConcreatScan Pro',
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text('พัฒนาโดย'),
-                          Text('นางสาว ทดสอบ ทดสอบ'),
-                          Text('ติดต่อ'),
-                          Text('0xx-xxx-xxxx')
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 235,
-                      height: MediaQuery.of(context).size.height - 100,
-                      child: Padding(
-                        padding: const EdgeInsets.all(16),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.asset(
-                            'assets/images/cracks/dialog_cracks.jpg',
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                      // color: Colors.green,
-                    )
-                  ],
-                ),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              _buildTitle('ข่าวสารแนะนำ', 'เพิ่มเติม', handleClickMoreMenu),
-              SizedBox(
-                height: 300,
-                // color: Colors.amber,
-                child: ListView.separated(
-                  itemCount: 2,
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 15,
                   ),
-                  itemBuilder: (context, index) {
-                    return _buildNewsCard(index, context);
-                  },
-                ),
-              )
-            ],
-          ),
+                )),
+            Expanded(
+                flex: 4,
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.amber.shade100,
+                    borderRadius: const BorderRadius.only(
+                        topRight: Radius.circular(42),
+                        bottomRight: Radius.circular(12)),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0, 1),
+                        blurRadius: 5,
+                        color: Colors.black.withOpacity(0.3),
+                      ),
+                    ],
+                  ),
+                )),
+          ],
+        ),
+      ),
+    );
+  }
+
+// Build top
+  Column _buildTop() {
+    return const Column(
+      children: [
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: AssetImage('assets/images/main.png'),
+        ),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Text(
+              'ConcreatScan Pro',
+              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'ผู้ช่วยสำหรับการจำแนกการแตกร้าวของคอนกรีต',
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.normal),
+            )
+          ],
         ),
       ],
     );
   }
 
-  GestureDetector _buildNewsCard(int index, BuildContext context) {
+// build Bottom
+  Column _buildBottom(
+      void Function() handleClickMoreMenu, MediaQueryData querySize) {
+    return Column(
+      children: [
+        newTitle('ข่าวสารแนะนำ', 'เพิ่มเติม', handleClickMoreMenu, querySize),
+        const SizedBox(
+          height: 5,
+        ),
+        SizedBox(
+          height: 300,
+          child: ListView.separated(
+            itemCount: 2,
+            separatorBuilder: (context, index) => const SizedBox(
+              height: 15,
+            ),
+            itemBuilder: (context, index) {
+              return newCard(index, context, querySize);
+            },
+          ),
+        )
+      ],
+    );
+  }
+
+  GestureDetector newCard(
+      int index, BuildContext context, MediaQueryData querySize) {
     return GestureDetector(
       onTap: () => {
         Navigator.push(
@@ -169,98 +177,85 @@ class _HomePageState extends State<HomePage> {
             MaterialPageRoute(
                 builder: (context) => PredictedScreen(index: index)))
       },
-      child: Container(
-        height: 130,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(8),
-          boxShadow: [
-            BoxShadow(
-              offset: const Offset(0, 1),
-              blurRadius: 5,
-              color: Colors.black.withOpacity(0.3),
-            ),
-          ],
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 130,
-                width: 120,
+      child: SizedBox(
+        width: querySize.size.width,
+        child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Container(
                 decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(4)),
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(4),
-                  child: Image.asset(
-                    menus[index].image,
-                    fit: BoxFit.cover,
-                    opacity: const AlwaysStoppedAnimation(1),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 130,
-                width: 200,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(4)),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width - 193,
-                          child: Text(
-                            menus[index].name,
-                            style: const TextStyle(
-                                fontSize: 14, fontWeight: FontWeight.bold),
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width - 193,
-                      child: Text(
-                        menus[index].fullDetail,
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF475467)),
-                      ),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: const Offset(0, 1),
+                      blurRadius: 5,
+                      color: Colors.black.withOpacity(0.3),
                     ),
                   ],
                 ),
-              ),
-            ),
-          ],
-        ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                          flex: 1,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.asset(
+                              menus[index].image,
+
+                              // fit: BoxFit.contain,
+                            ),
+                          )),
+                      Expanded(
+                          flex: 1,
+                          child: Column(
+                            children: [
+                              Text(
+                                menus[index].name,
+                                style: const TextStyle(
+                                    fontSize: 13, fontWeight: FontWeight.bold),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Text(
+                                  menus[index].fullDetail,
+                                  style: const TextStyle(fontSize: 12),
+                                ),
+                              )
+                            ],
+                          ))
+                    ],
+                  ),
+                ))),
       ),
     );
   }
 
-  Row _buildTitle(String title, String subTitle, dynamic onTap) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+  SizedBox newTitle(
+      String title, String subTitle, dynamic onTap, MediaQueryData querySize) {
+    return SizedBox(
+      width: querySize.size.width,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8)),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  title,
+                  style: const TextStyle(
+                      fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
-          ),
+            tapText(subTitle, onTap)
+          ],
         ),
-        tapText(subTitle, onTap)
-      ],
+      ),
     );
   }
 

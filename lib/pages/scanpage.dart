@@ -1,7 +1,6 @@
 // ignore_for_file: unused_field, use_build_context_synchronously
 
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -142,236 +141,188 @@ class _ScanPageState extends State<ScanPage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Stack(
-          children: [
-            _buildTop(context),
-            Padding(
-              padding: const EdgeInsets.only(top: 420.0),
-              child: _buildBottom(),
-            )
-          ],
-        )
-      ],
-    );
-  }
-
-  Container _buildTop(BuildContext context) {
-    return Container(
-      height: 600,
-      width: double.infinity,
-      decoration: BoxDecoration(color: Colors.amber[50]),
-      child: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            _loading == true
-                ? Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width - 75,
-                      height: 350,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.asset(
-                          'assets/images/main_scan.jpg',
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: SizedBox(
-                      width: MediaQuery.of(context).size.width - 75,
-                      height: 350,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(30),
-                        child: Image.file(
-                          _image,
-                          fit: BoxFit.fill,
-                        ),
-                      ),
-                    ),
-                  ),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Container _buildBottom() {
-    return Container(
-      height: 275,
-      width: double.infinity,
-      decoration: const BoxDecoration(
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(color: Colors.black26, spreadRadius: 3, blurRadius: 3)
-          ],
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(20), topRight: Radius.circular(20))),
-      child: _loading == false ? _buildPredicted() : _buildSelectImage(),
-    );
-  }
-
-  Column _buildPredicted() {
-    return Column(
-      children: [
-        _buildSelectMenu(),
-        const SizedBox(
-          height: 10,
-        ),
-        _output != null
-            ? PredictResult(
-                title: displayClass(_output?[0]['label']),
-                color: Colors.amber.shade200,
-                index: 2,
-                value: _output?[0]['confidence'] * 100,
-                onClick: handleMoreDetail,
-              )
-            : Column(
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    return SafeArea(
+      child: SizedBox(
+        width: screenWidth,
+        height: screenHeight,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 35,
+              ),
+              const Text(
+                'scan',
+                style: TextStyle(
+                    fontSize: 14,
+                    // fontWeight: FontWeight.bold,
+                    color: Colors.black26),
+              ),
+              const Text(
+                'ConcreatScan Pro',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+              const Divider(
+                color: Colors.black12,
+                height: 1,
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 25.0),
-                    child: Container(
-                      child: Text('กำลังโหลด...'),
+                  Expanded(
+                      child: Container(
+                    height: screenHeight * 0.55,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(24),
+                      child: Image.asset(
+                        'assets/images/main_scan.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ))
+                ],
+              ),
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Container(
+                    width: screenWidth,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(16),
+                      boxShadow: [
+                        BoxShadow(
+                          offset: const Offset(0, 1),
+                          blurRadius: 5,
+                          color: Colors.black.withOpacity(0.3),
+                        ),
+                      ],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            'data',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
+                            'Lorem Ipsum is simply dummy text of ',
+                            style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.black45,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          const SizedBox(
+                            height: 25,
+                          ),
+                          SizedBox(
+                            height: 50,
+                            child: Row(
+                              children: [
+                                Expanded(
+                                    child: GestureDetector(
+                                  onTap: pickImage,
+                                  child: Container(
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            offset: const Offset(0, 1),
+                                            blurRadius: 5,
+                                            color:
+                                                Colors.black.withOpacity(0.3),
+                                          ),
+                                        ],
+                                        color: Colors.indigoAccent,
+                                        borderRadius: BorderRadius.circular(8)),
+                                    child: const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        FaIcon(
+                                          FontAwesomeIcons.image,
+                                          color: Colors.white,
+                                        ),
+                                        SizedBox(
+                                          width: 12,
+                                        ),
+                                        Text(
+                                          'กล้อง',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                )),
+                                const SizedBox(
+                                  width: 14,
+                                ),
+                                Expanded(
+                                  child: GestureDetector(
+                                    onTap: pickGalleryImage,
+                                    child: Container(
+                                      height: 50,
+                                      decoration: BoxDecoration(
+                                          boxShadow: [
+                                            BoxShadow(
+                                              offset: const Offset(0, 1),
+                                              blurRadius: 5,
+                                              color:
+                                                  Colors.black.withOpacity(0.3),
+                                            ),
+                                          ],
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(8)),
+                                      child: const Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          FaIcon(
+                                            FontAwesomeIcons.image,
+                                            color: Colors.indigoAccent,
+                                          ),
+                                          SizedBox(
+                                            width: 12,
+                                          ),
+                                          Text(
+                                            'แกลอรี',
+                                            style: TextStyle(
+                                                color: Colors.indigoAccent,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ],
-              )
-      ],
-    );
-  }
-
-  Row _buildSelectMenu() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Expanded(
-          child: GestureDetector(
-            onTap: () => {
-              setState(() {
-                indexButton = 0;
-              })
-            },
-            child: Container(
-              height: 45,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(20),
                 ),
-                border: Border(
-                    bottom: BorderSide(
-                        color:
-                            indexButton == 0 ? Colors.black38 : Colors.black12,
-                        width: indexButton == 0 ? 3 : 2)),
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.circleInfo,
-                    size: 20,
-                    color: indexButton == 0 ? Colors.black45 : Colors.black26,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Text(
-                    'ผลการสแกน',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: indexButton == 0 ? Colors.black45 : Colors.black26,
-                    ),
-                  )
-                ],
-              ),
-            ),
+            ],
           ),
         ),
-        Expanded(
-            child: GestureDetector(
-          onTap: () => handleSaveHistory(),
-          child: Container(
-            height: 45,
-            decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border(
-                    bottom: BorderSide(
-                        color:
-                            indexButton == 1 ? Colors.black38 : Colors.black12,
-                        width: indexButton == 1 ? 3 : 2)),
-                borderRadius:
-                    const BorderRadius.only(topRight: Radius.circular(20))),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
-              child: Row(
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.download,
-                    size: 20,
-                    color: indexButton == 1 ? Colors.black45 : Colors.black26,
-                  ),
-                  const SizedBox(
-                    width: 16,
-                  ),
-                  Text(
-                    'บันทึกประวัติ',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                      color: indexButton == 1 ? Colors.black45 : Colors.black26,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ))
-      ],
-    );
-  }
-
-  Column _buildSelectImage() {
-    return Column(
-      children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 16.0),
-          child: Text(
-            'ConcreatScan Pro',
-            style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
-                color: Colors.black54),
-          ),
-        ),
-        const SizedBox(
-          height: 40,
-        ),
-        CustomButton(
-          title: 'กล้อง',
-          icon: const FaIcon(
-            FontAwesomeIcons.camera,
-            color: Colors.white,
-          ),
-          onClick: pickImage,
-        ),
-        const SizedBox(
-          height: 10,
-        ),
-        CustomButton(
-          title: 'แกลอรี่',
-          icon: const FaIcon(
-            FontAwesomeIcons.image,
-            color: Colors.white,
-          ),
-          onClick: pickGalleryImage,
-        ),
-      ],
+        // child: ,
+      ),
     );
   }
 }
