@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import 'package:skru/models/history.model.dart';
 import 'package:skru/pages/predictedpage.dart';
+import 'package:skru/pages/resultpage.dart';
 import 'package:skru/providers/history_provider.dart';
 import 'package:skru/utils/displayClass.dart';
 import 'package:skru/utils/snackbar.dart';
@@ -59,6 +60,15 @@ class _ScanPageState extends State<ScanPage> {
       _loading = false;
       _id = const Uuid().v4();
     });
+    if (_loading == false) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ResultPage(
+              image: _image,
+            ),
+          ));
+    }
   }
 
   loadModel() async {
@@ -76,6 +86,13 @@ class _ScanPageState extends State<ScanPage> {
       _image = File(image.path);
       _loading = false;
     });
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ResultPage(
+            image: _image,
+          ),
+        ));
     classifyImage(_image);
   }
 
@@ -212,12 +229,12 @@ class _ScanPageState extends State<ScanPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'data',
+                            'ConcreatScan Pro',
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           const Text(
-                            'Lorem Ipsum is simply dummy text of ',
+                            'สามารถเลือกถ่ายรูป หรือ เลือกจากแกลอรี',
                             style: TextStyle(
                                 fontSize: 12,
                                 color: Colors.black45,
@@ -321,7 +338,6 @@ class _ScanPageState extends State<ScanPage> {
             ],
           ),
         ),
-        // child: ,
       ),
     );
   }

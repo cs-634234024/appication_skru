@@ -25,48 +25,53 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: [
-        Center(
-          child: Column(
-            children: [
-              _buildAvatar(),
-              const SizedBox(
-                height: 15,
-              ),
-              const Text(
-                'Nicolas Adams',
-                style: TextStyle(
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87),
-              ),
-              const Text(
-                'Nicolas.Adams@gmail.com',
-                style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black45),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              SizedBox(
-                height: 400,
-                child: ListView.separated(
-                  separatorBuilder: (context, index) => const SizedBox(
-                    height: 15,
-                  ),
-                  itemCount: user.length,
-                  itemBuilder: (context, index) {
-                    return _buildNameCard(index);
-                  },
-                ),
-              )
-            ],
+    return SafeArea(
+      child: ListView(
+        children: [
+          const SizedBox(
+            height: 35,
           ),
-        ),
-      ],
+          Center(
+            child: Column(
+              children: [
+                _buildAvatar(),
+                const SizedBox(
+                  height: 15,
+                ),
+                const Text(
+                  'Nicolas Adams',
+                  style: TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black87),
+                ),
+                const Text(
+                  'Nicolas.Adams@gmail.com',
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black45),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 400,
+                  child: ListView.separated(
+                    separatorBuilder: (context, index) => const SizedBox(
+                      height: 15,
+                    ),
+                    itemCount: user.length,
+                    itemBuilder: (context, index) {
+                      return _buildNameCard(index);
+                    },
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
