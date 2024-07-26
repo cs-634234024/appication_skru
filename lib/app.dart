@@ -1,10 +1,8 @@
 import "package:flutter/material.dart";
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:skru/models/history.model.dart';
 import 'package:skru/models/news.model.dart';
 import 'package:skru/pages/historypage.dart';
-import 'package:skru/pages/profilepage.dart';
 import 'package:skru/pages/scanpage.dart';
 import 'package:skru/providers/history_provider.dart';
 import 'package:skru/widgets/BottomBar.dart';
@@ -85,7 +83,5 @@ onChangeBodyContent(int index, List<History> history) {
     return const ScanPage();
   } else if (index == 2) {
     return HistoryScreen(history: history);
-  } else if (index == 3) {
-    return ProfilePage();
   }
 }

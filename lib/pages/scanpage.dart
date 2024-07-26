@@ -2,18 +2,9 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:provider/provider.dart';
-import 'package:skru/models/history.model.dart';
-import 'package:skru/pages/predictedpage.dart';
 import 'package:skru/pages/resultpage.dart';
-import 'package:skru/providers/history_provider.dart';
-import 'package:skru/utils/displayClass.dart';
-import 'package:skru/utils/snackbar.dart';
-import 'package:skru/widgets/CustomButton.dart';
-import 'package:skru/widgets/PredictResult.dart';
 import 'package:tflite/tflite.dart';
 import 'package:uuid/uuid.dart';
 
@@ -27,7 +18,6 @@ class ScanPage extends StatefulWidget {
 class _ScanPageState extends State<ScanPage> {
   bool _loading = true;
   late File _image;
-  int indexButton = 0;
   List? _output;
   late String _id;
   final picker = ImagePicker();
@@ -66,16 +56,23 @@ class _ScanPageState extends State<ScanPage> {
           MaterialPageRoute(
             builder: (context) => ResultPage(
               image: _image,
+              output: _output ?? [],
+              id: _id,
+              index: _output?[0]['index'],
             ),
           ));
     }
   }
 
-  loadModel() async {
-    await Tflite.loadModel(
-      model: 'assets/model.tflite',
-      labels: 'assets/label.txt',
-    );
+  Future loadModel() async {
+    try {
+      await Tflite.loadModel(
+        model: 'assets/model.tflite',
+        labels: 'assets/label.txt',
+      );
+    } catch (e) {
+      print(e);
+    }
   }
 
   pickImage() async {
@@ -86,13 +83,6 @@ class _ScanPageState extends State<ScanPage> {
       _image = File(image.path);
       _loading = false;
     });
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => ResultPage(
-            image: _image,
-          ),
-        ));
     classifyImage(_image);
   }
 
@@ -105,55 +95,6 @@ class _ScanPageState extends State<ScanPage> {
       _loading = false;
     });
     classifyImage(_image);
-  }
-
-  void handleSaveHistory() async {
-    setState(() {
-      indexButton = 1;
-    });
-    var provider = Provider.of<HistoryProvider>(context, listen: false);
-
-    if (await provider.checkIdHistory(_id) == true) {
-      alertSnackBar(
-          context,
-          'ระบบบันทึกข้อมูลนี้แล้ว',
-          Colors.red,
-          1,
-          const FaIcon(
-            FontAwesomeIcons.x,
-            size: 16,
-            color: Colors.white,
-          ));
-    } else {
-      History data = History(
-          id: _id,
-          image: 'assets/images/skeleton.png',
-          title: _output?[0]['label'],
-          accuracy: _output?[0]['confidence'],
-          createdAt: DateTime.now().toIso8601String());
-      // provider
-
-      provider.addHistory(data);
-
-      alertSnackBar(
-          context,
-          'บันทึกข้อมูลสำเร็จ',
-          Colors.green,
-          1,
-          const FaIcon(
-            FontAwesomeIcons.check,
-            size: 16,
-            color: Colors.white,
-          ));
-    }
-  }
-
-  void handleMoreDetail() {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) =>
-                PredictedScreen(index: _output?[0]['index'])));
   }
 
   @override
@@ -194,8 +135,8 @@ class _ScanPageState extends State<ScanPage> {
               Row(
                 children: [
                   Expanded(
-                      child: Container(
-                    height: screenHeight * 0.55,
+                      child: SizedBox(
+                    height: screenHeight * 0.5,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(24),
                       child: Image.asset(

@@ -12,9 +12,9 @@ class BottomBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       child: BottomNavigationBar(
-        backgroundColor: kbuttonWidgetColor,
-        selectedIconTheme: IconThemeData(color: Colors.white),
-        unselectedIconTheme: IconThemeData(color: Colors.black38),
+        backgroundColor: Colors.amber.shade200,
+        selectedIconTheme: const IconThemeData(color: Colors.white),
+        unselectedIconTheme: const IconThemeData(color: Colors.black38),
         selectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -30,11 +30,6 @@ class BottomBar extends StatelessWidget {
           BottomNavigationBarItem(
             icon: const FaIcon(FontAwesomeIcons.file),
             label: 'ประวัติ',
-            backgroundColor: Colors.amber.shade200,
-          ),
-          BottomNavigationBarItem(
-            icon: const FaIcon(FontAwesomeIcons.user),
-            label: 'ผู้ใช้งาน',
             backgroundColor: Colors.amber.shade200,
           ),
         ],
